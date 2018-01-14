@@ -62,7 +62,7 @@ include('dbconnection.php');
 				$sql = "INSERT INTO user (username, password) VALUES ('".$username."', '".$hashed_password."')";
 
 				if ($conn->query($sql) === TRUE) {
-					echo "New record created successfully";
+					echo "New user created successfully";
 				} else {
 					echo "Error: " . $sql . "<br>" . $conn->error;
 				}

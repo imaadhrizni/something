@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2018 at 10:39 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Jan 14, 2018 at 07:29 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,18 +33,15 @@ CREATE TABLE `article` (
   `article_text` text NOT NULL,
   `article_category_id` int(11) NOT NULL,
   `article_user_name` varchar(50) NOT NULL,
-  `article_img_url` varchar(255) DEFAULT NULL,
-  `article_header` varchar(100) NOT NULL
+  `article_img_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`article_id`, `article_text`, `article_category_id`, `article_user_name`, `article_img_url`, `article_header`) VALUES
-(2, 'This is article number one which falls into Business category.', 2, 'admin', 'http://walkmymind.com/wp-content/uploads/2016/10/news-banner.jpg', 'Business Article 1'),
-(3, 'this is the newer article thats being created', 1, 'admin', NULL, 'The Local News Newer Article '),
-(4, 'business articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness articlebusiness article', 2, 'admin', NULL, 'Business Article 2');
+INSERT INTO `article` (`article_id`, `article_text`, `article_category_id`, `article_user_name`, `article_img_url`) VALUES
+(2, 'This is article number one which falls into Business category.', 2, 'admin', 'http://walkmymind.com/wp-content/uploads/2016/10/news-banner.jpg');
 
 -- --------------------------------------------------------
 
@@ -88,7 +85,7 @@ CREATE TABLE `comment` (
 CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `user_type` int(50) NOT NULL DEFAULT '0'
+  `user_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -96,9 +93,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `user_type`) VALUES
-('admin', '$2y$10$N3B8jmlznIbtwCQc82E9heJfu7F1vGDqNwhMJV7vTcX/Z2vWTLLEq', 1),
-('user1', '$2y$10$Y6FXqgLoFtVkPcNQfRN8oe5jTAgjIH6e7atiEPHIwNsqGo0roaXWK', 0),
-('user2', '$2y$10$PycCbmILcDaO0XX//MJ4jeRaxwb/p06fr65whsOwy3EATd/4coagm', 0);
+('admin', '$2a$04$sput6dwZTeg9nj8ljsV3sOBGRobzhHAhbMjlTA2vqwNV4Rdhp/FfC', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -140,7 +135,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `article_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
