@@ -44,17 +44,20 @@ session_start();
 		<!-- Delete the <nav> element if the sidebar is not required -->
 			<nav>
 				<ul>
-					<li><a href="#">Articles</a></li>
+					<li><a href="admin-articles.php">Articles</a></li>
 					<li><a href="#">Create Admin</a></li>
 					<li><a href="#">Comment</a></li>
-					<li><a href="#">Category</a></li>
+					<li><a href="admin-category.php">Category</a></li>
 				</ul>
 			</nav>
 
 			<article>
 
-				
-				
+
+
+
+
+
 			</article>
 		</main>
 
