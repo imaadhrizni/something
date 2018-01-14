@@ -12,7 +12,7 @@
 		</header>
 		<nav>
 			<ul>
-				<li><a href="/asd/index.php">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><a href="#">Latest Articles</a></li>
 				<li><a href="#">Select Category</a>
 					<ul>
