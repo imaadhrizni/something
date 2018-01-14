@@ -11,10 +11,10 @@ DELETE FROM `category` WHERE category_id = 0
 SELECT * FROM `category`
 
 -- Article Insert
-INSERT INTO `article` (`article_id`, `article_text`, `article_category_id`, `article_user_name`, `article_img_url`) VALUES (NULL, 'This is article number one which falls into Business category.', '2', 'admin', 'http://walkmymind.com/wp-content/uploads/2016/10/news-banner.jpg')
+INSERT INTO `article` (`article_id`, `article_header`, `article_text`, `article_category_id`, `article_user_name`, `article_img_url`) VALUES (NULL, `Article X Header`, 'This is article number one which falls into Business category.', '2', 'admin', 'http://walkmymind.com/wp-content/uploads/2016/10/news-banner.jpg')
 
 -- Article Update
-UPDATE `article` SET `article_text`=[value-2],`article_category_id`=[value-3],`article_user_name`=[value-4],`article_img_url`=[value-5] WHERE `article_id` = 2
+UPDATE `article` SET `article_header`=[value-2], `article_text`=[value-2],`article_category_id`=[value-3],`article_user_name`=[value-4],`article_img_url`=[value-5] WHERE `article_id` = 2
 
 -- Article Delete
 DELETE FROM `article` WHERE article_id = 1
