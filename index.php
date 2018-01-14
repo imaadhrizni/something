@@ -1,34 +1,59 @@
+<?php
+
+include('dbconnection.php');
+
+?>
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="styles.css"/>
-		<title>Northampton News - Home</title>
-	</head>
-	<body>
-		<header>
-			<section>
-				<h1>Northampton News</h1>
-			</section>
-		</header>
-		<nav>
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="#">Latest Articles</a></li>
-				<li><a href="#">Select Category</a>
-					<ul>
-						<li><a href="#">Category 1</a></li>
-						<li><a href="#">Category 2</a></li>
-						<li><a href="#">Category 3</a></li>
-					</ul>
-				</li>
-				<li><a href="login.php">Login</a></li>
-				<li><a href="signup.php">Sign Up</a></li>				
-				<li><a href="contact.php">Contact us</a></li>
-			</ul>
-		</nav>
-		<img src="images/banners/randombanner.php" />
-		<main>
-			<!-- Delete the <nav> element if the sidebar is not required -->
+<head>
+	<link rel="stylesheet" href="styles.css"/>
+	<title>Northampton News - Home</title>
+</head>
+<body>
+	<header>
+		<section>
+			<h1>Northampton News</h1>
+		</section>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="#">Latest Articles</a></li>
+			<li><a href="#">Select Category</a>
+
+				
+				<ul>
+					<?php
+
+					$sql = "SELECT * FROM category";
+					$result = $conn->query($sql);
+
+					if ($result->num_rows > 0) {
+						
+						while($row = $result->fetch_assoc()) {
+
+							echo "<li><a href='#'>". $row["category_name"]. "</a></li>";
+
+						}
+
+					}
+
+					?>
+
+				</ul>
+
+
+
+			</li>
+			<li><a href="login.php">Login</a></li>
+			<li><a href="signup.php">Sign Up</a></li>				
+			<li><a href="contact.php">Contact us</a></li>
+		</ul>
+	</nav>
+	<img src="images/banners/randombanner.php" />
+	<main>
+		<!-- Delete the <nav> element if the sidebar is not required -->
 			<nav>
 				<ul>
 					<li><a href="#">Sidebar</a></li>
@@ -66,4 +91,8 @@
 		</footer>
 
 	</body>
-</html>
+	</html>
+
+	<?php
+	$conn->close();
+	?>
