@@ -2,6 +2,9 @@
 
 include('dbconnection.php');
 
+// Start the session
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -38,29 +41,32 @@ include('dbconnection.php');
 	?>
 	<img src="images/banners/randombanner.php" />
 	<main>
+		<!-- Delete the <nav> element if the sidebar is not required -->
+			<nav>
+				<ul>
+					<li><a href="#">Sidebar</a></li>
+					<li><a href="#">This can</a></li>
+					<li><a href="#">Be removed</a></li>
+					<li><a href="#">When not needed</a></li>
+				</ul>
+			</nav>
+
 			<article>
+
+
+				<!-- Articles -->
 
 				<?php
 
-				$categoryid = $_GET["val"];
-
-				$sqlCategory = "SELECT * FROM category WHERE category_id=".$categoryid;
-				$result_category = $conn->query($sqlCategory);
-
-				while($row = $result_category->fetch_assoc()) {
-
-					echo "<div>Category: ". $row["category_name"] ."</div><br />";
-
-				}
-
-				$sql_category = "SELECT * FROM article WHERE article_category_id=".$categoryid;
+				// Set session variables
 				
-				$result_articles = $conn->query($sql_category);
 
-				if ($result_articles->num_rows > 0) {
+				$sql_article = "SELECT * FROM article";
+				$result_article = $conn->query($sql_article);
 
-					while($row = $result_articles->fetch_assoc()) {
+				if ($result_article->num_rows > 0) {
 
+					while($row = $result_article->fetch_assoc()) {
 
 						echo '<div>';
 
@@ -81,6 +87,8 @@ include('dbconnection.php');
 				}
 
 				?>
+
+
 
 			</article>
 		</main>

@@ -40,7 +40,16 @@ session_start();
 	?>
 	<img src="images/banners/randombanner.php" />
 	<main>
-	
+		<!-- Delete the <nav> element if the sidebar is not required -->
+			<nav>
+				<ul>
+					<li><a href="#">Sidebar</a></li>
+					<li><a href="#">This can</a></li>
+					<li><a href="#">Be removed</a></li>
+					<li><a href="#">When not needed</a></li>
+				</ul>
+			</nav>
+
 			<article>
 
 				<?php
@@ -68,7 +77,7 @@ session_start();
 
 				<!-- Add Comment Form -->
 				<?php
-					if($_SESSION!=null){
+					if($_SESSION["username"]!=null){
 				?>
 						<form method="post"> 
 							<label id="comment_text">Comment:</label><br/>

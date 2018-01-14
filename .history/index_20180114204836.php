@@ -2,6 +2,9 @@
 
 include('dbconnection.php');
 
+// Start the session
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -12,18 +15,14 @@ include('dbconnection.php');
 
 	<style type="text/css">
 	.read-more-button{
-
 		float: right;
 		text-decoration: none;
-
 	}
 
 	.article-list-item{
-
 		background: #fff;
 		padding: 10px;
 		list-style: none;
-
 	}
 </style>
 </head>
@@ -38,35 +37,21 @@ include('dbconnection.php');
 	?>
 	<img src="images/banners/randombanner.php" />
 	<main>
-			<article>
+		
 
-				<?php
+		<article>
+			<!-- Articles -->
+			<?php
+				$sql_article = "SELECT * FROM article";
+				$result_article = $conn->query($sql_article);
 
-				$categoryid = $_GET["val"];
+				if ($result_article->num_rows > 0) {
 
-				$sqlCategory = "SELECT * FROM category WHERE category_id=".$categoryid;
-				$result_category = $conn->query($sqlCategory);
-
-				while($row = $result_category->fetch_assoc()) {
-
-					echo "<div>Category: ". $row["category_name"] ."</div><br />";
-
-				}
-
-				$sql_category = "SELECT * FROM article WHERE article_category_id=".$categoryid;
-				
-				$result_articles = $conn->query($sql_category);
-
-				if ($result_articles->num_rows > 0) {
-
-					while($row = $result_articles->fetch_assoc()) {
-
+					while($row = $result_article->fetch_assoc()) {
 
 						echo '<div>';
 
 						echo "<li class='article-list-item'>". $row["article_header"];
-
-						//echo "<a href='#' class='read-more-button'>Read More</a>";
 
 						$pageid = $row["article_id"];
 
@@ -79,19 +64,17 @@ include('dbconnection.php');
 					}
 
 				}
+			?>
+		</article>
+	</main>
 
-				?>
+	<footer>
+		&copy; Northampton News 2017
+	</footer>
 
-			</article>
-		</main>
+</body>
+</html>
 
-		<footer>
-			&copy; Northampton News 2017
-		</footer>
-
-	</body>
-	</html>
-
-	<?php
-	$conn->close();
-	?>
+<?php
+$conn->close();
+?>

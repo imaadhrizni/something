@@ -42,14 +42,14 @@ session_start();
 	<img src="images/banners/randombanner.php" />
 	<main>
 		<!-- Delete the <nav> element if the sidebar is not required -->
-			<nav>
-				<ul>
-					<li><a href="admin-articles.php">Articles</a></li>
-					<li><a href="admin-create.php">Create Admin</a></li>
-					<li><a href="admin-comments.php">Comment Approval</a></li>
-					<li><a href="admin-category.php">Category</a></li>
-				</ul>
-			</nav>
+		<nav>
+		<ul>
+			<li><a href="admin-articles.php">Articles</a></li>
+			<li><a href="admin-create.php">Create Admin</a></li>
+			<li><a href="admin-comments.php">Comment Approval</a></li>
+			<li><a href="admin-category.php">Category</a></li>
+		</ul>
+	</nav>
 
 			<article>
 

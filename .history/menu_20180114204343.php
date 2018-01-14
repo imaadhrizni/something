@@ -8,22 +8,23 @@
 				<!-- Categories -->
 				<?php
 
-					$sql = "SELECT * FROM category";
-					$result = $conn->query($sql);
+				$sql = "SELECT * FROM category";
+				$result = $conn->query($sql);
 
-					if ($result->num_rows > 0) {
+				if ($result->num_rows > 0) {
 
-						while($row = $result->fetch_assoc()) {
+					while($row = $result->fetch_assoc()) {
 
-							$categoryid = $row["category_id"];
+						$categoryid = $row["category_id"];
 
-							$categoryname = $row["category_name"];
+						$categoryname = $row["category_name"];
 
-							echo "<li><a href='category-specific.php?val=".$categoryid."'>". $categoryname. "</a></li>";
-
-						}
+						echo "<li><a href='category-specific.php?val=".$categoryid."'>". $categoryname. "</a></li>";
 
 					}
+
+				}
+
 				?>
 
 			</ul>

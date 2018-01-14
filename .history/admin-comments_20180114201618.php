@@ -45,7 +45,7 @@ session_start();
 			<nav>
 				<ul>
 					<li><a href="admin-articles.php">Articles</a></li>
-					<li><a href="admin-create.php">Create Admin</a></li>
+					<li><a href="#">Create Admin</a></li>
 					<li><a href="admin-comments.php">Comment Approval</a></li>
 					<li><a href="admin-category.php">Category</a></li>
 				</ul>
@@ -62,8 +62,8 @@ session_start();
 					$sqlComments = "SELECT * FROM comment WHERE comment_approve_status = 0";
 					
 					$result_comments = $conn->query($sqlComments);
-					if($result_comments!=null){
-						if ($result_comments->num_rows > 0) {
+					// if($result_comments!=null){
+					// 	if ($result_comments->num_rows > 0) {
 							while($row = $result_comments->fetch_assoc()) {
 								echo '<div>';
 								echo '<form method="post">';
@@ -75,14 +75,14 @@ session_start();
 								echo '</form>';
 								echo '</div>';
 							}
-						}else{
-							echo "No Comments to approve";
-						}
-					}else{
-						echo '<br>';
-						echo "No Comments";
-						echo '<br>';					
-					}
+						// }else{
+						// 	echo "No Comments to approve";
+						// }
+					// }else{
+					// 	echo '<br>';
+					// 	echo "No Comments";
+					// 	echo '<br>';					
+					// }
 
 					if(isset($_POST['approve'])){
 

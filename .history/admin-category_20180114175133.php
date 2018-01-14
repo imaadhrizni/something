@@ -45,8 +45,8 @@ session_start();
 			<nav>
 				<ul>
 					<li><a href="admin-articles.php">Articles</a></li>
-					<li><a href="admin-create.php">Create Admin</a></li>
-					<li><a href="admin-comments.php">Comment Approval</a></li>
+					<li><a href="#">Create Admin</a></li>
+					<li><a href="admin-comments.php">Comment</a></li>
 					<li><a href="admin-category.php">Category</a></li>
 				</ul>
 			</nav>
