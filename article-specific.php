@@ -87,28 +87,21 @@ include('dbconnection.php');
 
 			<article>
 
-				<!-- Articles -->
-
 				<?php
 
-				$sql_article = "SELECT * FROM article";
-				$result_article = $conn->query($sql_article);
+				$articleid = $_GET["val"];
 
-				if ($result_article->num_rows > 0) {
+				$sql_article = "SELECT * FROM article WHERE article_id=".$articleid;
+				
+				$result_article_text = $conn->query($sql_article);
 
-					while($row = $result_article->fetch_assoc()) {
+				if ($result_article_text->num_rows > 0) {
+
+					while($row = $result_article_text->fetch_assoc()) {
 
 						echo '<div>';
 
-						echo "<li class='article-list-item'>". $row["article_header"];
-
-						//echo "<a href='#' class='read-more-button'>Read More</a>";
-
-						$pageid = $row["article_id"];
-
-						echo "<a href='article-specific.php?val=".$pageid."' class='read-more-button'>Read More</a>";
-
-						echo "</li>";
+						echo $row["article_text"];
 
 						echo '</div>';
 

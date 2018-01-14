@@ -33,7 +33,7 @@ include('dbconnection.php');
 			<h1>Northampton News</h1>
 		</section>
 	</header>
-	<nav>
+<nav>
 		<ul>
 			<li><a href="index.php">Home</a></li>
 			<li><a href="#">Latest Articles</a></li>
@@ -87,16 +87,18 @@ include('dbconnection.php');
 
 			<article>
 
-				<!-- Articles -->
-
 				<?php
 
-				$sql_article = "SELECT * FROM article";
-				$result_article = $conn->query($sql_article);
+				$categoryid = $_GET["val"];
 
-				if ($result_article->num_rows > 0) {
+				$sql_category = "SELECT * FROM article WHERE article_category_id=".$categoryid;
+				
+				$result_articles = $conn->query($sql_category);
 
-					while($row = $result_article->fetch_assoc()) {
+				if ($result_articles->num_rows > 0) {
+
+					while($row = $result_articles->fetch_assoc()) {
+
 
 						echo '<div>';
 
@@ -117,8 +119,6 @@ include('dbconnection.php');
 				}
 
 				?>
-
-
 
 			</article>
 		</main>
