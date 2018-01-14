@@ -2,6 +2,10 @@
 
 include('dbconnection.php');
 session_start();
+
+
+
+unset($_SESSION["username"]);
 ?>
 
 <!DOCTYPE html>

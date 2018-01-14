@@ -8,8 +8,6 @@
 			<ul>
 				<!-- Categories -->
 				<?php
-				
-				echo $_SESSION["username"];
 
 				$sql = "SELECT * FROM category";
 				$result = $conn->query($sql);
@@ -35,8 +33,29 @@
 
 
 		</li>
-		<li><a href="login.php">Login</a></li>
-		<li><a href="signup.php">Sign Up</a></li>
+
+		<?php
+
+		if(isset($_SESSION["username"])){
+			echo '<li><a href="login.php">Log Out</a></li>';
+		}else{
+			echo '<li><a href="login.php">Login</a></li>';
+			echo '<li><a href="signup.php">Sign Up</a></li>';
+		}
+
+		?>
+		
 		<li><a href="contact.php">Contact us</a></li>
+
+		<?php
+
+		if(isset($_SESSION["username"])){
+			if($_SESSION["username"] == "admin"){
+				echo '<li><a href="admin-portal.php">Admin Portal</a></li>';
+			}
+			
+		}
+
+		?>
 	</ul>
 </nav>
