@@ -57,14 +57,38 @@ include('dbconnection.php');
 
 				$password = $_POST['password'];
 
-				$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+				$sql = "SELECT * FROM user";
 
-				$sql = "INSERT INTO user (username, password) VALUES ('".$username."', '".$hashed_password."')";
+				$result = $conn->query($sql);
 
-				if ($conn->query($sql) === TRUE) {
-					echo "New record created successfully";
-				} else {
-					echo "Error: " . $sql . "<br>" . $conn->error;
+				while($row = $result->fetch_assoc()) {
+
+					$dbpassword = $row["password"];
+
+					$passwordOK = password_verify($password, $dbpassword);
+
+					$dbusername = $row["username"];
+
+					$dbusertype = $row["user_type"];
+
+					$normalURL = "http://localhost/something/index.php";
+
+					$adminURL = "http://localhost/something/admin-portal.php";
+
+					if(($dbusername == $username) && ($passwordOK == true)){
+
+						if($dbusertype == 0){
+
+							header('Location: '.$normalURL);
+
+						} else{
+
+							header('Location: '.$adminURL);
+
+						}
+
+					}
+
 				}
 
 			}
