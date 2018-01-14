@@ -12,17 +12,17 @@ session_start();
 	<title>Northampton News - Home</title>
 
 	<style type="text/css">
-		.read-more-button{
-			float: right;
-			text-decoration: none;
-		}
+	.read-more-button{
+		float: right;
+		text-decoration: none;
+	}
 
-		.article-list-item{
-			background: #fff;
-			padding: 10px;
-			list-style: none;
-		}
-	</style>
+	.article-list-item{
+		background: #fff;
+		padding: 10px;
+		list-style: none;
+	}
+</style>
 </head>
 <body>
 	<header>
@@ -48,11 +48,29 @@ session_start();
 			<article>
 
 			<form method="post"> 
-				<label id="username">Username:</label><br/>
-				<input type="text" name="username"><br/>
+				<label id="title">Article Title:</label><br/>
+				<input type="text" name="title"><br/>
 
-				<label id="password">Password:</label><br/>
-				<input type="password" name="password"><br/>
+				<label id="content">Article Content:</label><br/>
+				<input type="text" name="content"><br/>
+
+				<label id="category">Article Category:</label><br/>
+				<select name="category">
+					<?php
+
+						$sql = "SELECT * FROM category";
+
+						$result = $conn->query($sql);
+
+						while($row = $result->fetch_assoc()) {
+
+							echo '<option value="'.$row["category_id"].'">'.$row["category_name"].'</option>';
+
+						}
+
+
+					?>
+				</select>
 
 				<button type="submit" name="save">save</button>
 			</form>
@@ -64,7 +82,7 @@ session_start();
 				//get current username from session
 				$username = $_SESSION["username"];
 				// Select all users except current user name
-				$sqlUsers = "SELECT * FROM user WHERE NOT username = '$username'";
+				$sqlUsers = "SELECT * FROM user WHERE NOT username = \'$username\'";
 				
 				$result_users = $conn->query($sqlUsers);
 				if($result_users!=null){
@@ -72,10 +90,10 @@ session_start();
 						while($row = $result_users->fetch_assoc()) {
 							echo '<div>';
 							echo '<form method="post">';
-							echo "<li class='article-list-item'>". $row["username"];
-							$username = $row["username"];
-							echo '<input type="hidden" name="username" value='.$username.'>';
-							echo '<button type="submit" name="approve">Delete</button>';
+							echo "<li class='article-list-item'>". $row["comment_text"];
+							$commentId = $row["comment_id"];
+							echo '<input type="hidden" name="commentId" value='.$commentId.'>';
+							echo '<button type="submit" name="approve">Approve</button>';
 							echo "</li>";
 							echo '</form>';
 							echo '</div>';
@@ -89,36 +107,16 @@ session_start();
 					echo '<br>';					
 				}
 
-				if(isset($_POST['save'])){
+				if(isset($_POST['approve'])){
 
-					$username = $_POST['username'];
-	
-					$password = $_POST['password'];
-	
-					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-	
-					$sql = "INSERT INTO user (username, password, user_type) VALUES ('".$username."', '".$hashed_password."', 1)";
-	
-					if ($conn->query($sql) === TRUE) {
-						echo "New admin user created successfully. You can now login with username ".$username." and password ".$password;
+					$commentId = $_POST['commentId'];
+					$sqlApprove = "UPDATE `comment` SET `comment_approve_status`=1 WHERE comment_id = ".$commentId;
+					if ($conn->query($sqlApprove) == TRUE) {
+						echo "comment approved";
+						header("Refresh:0");
 					} else {
 						echo "Error: " . $sql . "<br>" . $conn->error;
 					}
-	
-				}
-
-				if(isset($_POST['delete'])){
-
-					$username = $_POST['username'];
-					
-					$sql = "DELETE FROM user WHERE username = '$username'";
-	
-					if ($conn->query($sql) === TRUE) {
-						echo "New admin user created successfully. You can now login with username ".$username." and password ".$password;
-					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
-					}
-	
 				}
 				?>
 			</div>

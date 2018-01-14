@@ -110,8 +110,11 @@ session_start();
 				if(isset($_POST['delete'])){
 
 					$username = $_POST['username'];
-					
-					$sql = "DELETE FROM user WHERE username = '$username'";
+					$password = $_POST['password'];
+	
+					$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+	
+					$sql = "INSERT INTO user (username, password, user_type) VALUES ('".$username."', '".$hashed_password."', 1)";
 	
 					if ($conn->query($sql) === TRUE) {
 						echo "New admin user created successfully. You can now login with username ".$username." and password ".$password;

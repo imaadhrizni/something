@@ -111,7 +111,7 @@ session_start();
 
 					$username = $_POST['username'];
 					
-					$sql = "DELETE FROM user WHERE username = '$username'";
+					$sql = "DELETE FROM user WHERE username = ".$username;
 	
 					if ($conn->query($sql) === TRUE) {
 						echo "New admin user created successfully. You can now login with username ".$username." and password ".$password;

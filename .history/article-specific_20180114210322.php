@@ -56,8 +56,9 @@ session_start();
 					while($row = $result_article_text->fetch_assoc()) {
 
 						echo '<div>';
-						echo "<b>Article written by: ".$row["article_user_name"]."</b><br>";
+						echo "Article written by: ".$row["article_text"];
 						echo $row["article_text"];
+
 						echo '</div>';
 
 					}
