@@ -58,11 +58,12 @@ session_start();
 				if(isset($_POST['save'])){
 
 					$title = $_POST['title'];
-					$content = $_POST['content'];
-					$categoryId = $_POST['categoryId'];
-					$username = $_SESSION["username"];
 
-					$sql = "INSERT INTO article (article_text, article_category_id, article_user_name, article_header) VALUES ('".$content."', '".$categoryId."', '".$username."', '".$title."')";
+					$content = $_POST['content'];
+
+					$category = $_POST['category'];
+
+					$sql = "INSERT INTO article (article_text, article_category_id, article_user_name, article_header) VALUES ('".$content."', ".$category.", 'admin', '".$title."')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "New article created successfully";
@@ -97,7 +98,7 @@ session_start();
 					<input type="text" name="content"><br/>
 
 					<label id="category">Article Category:</label><br/>
-					<select name="categoryId">
+					<select name="category">
 						<?php
 
 							$sql = "SELECT * FROM category";

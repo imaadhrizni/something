@@ -31,8 +31,8 @@
 
 		<?php
 			if(isset($_SESSION["username"])){
-				echo '<li><a href="login.php">Log Out</a></li>';
-				if($_SESSION["usertype"] == 1){
+				echo '<li><a href="logout.php">Log Out</a></li>';
+				if($_SESSION["username"] == "admin"){
 					echo '<li><a href="admin-portal.php">Admin Portal</a></li>';
 				}
 			}else{

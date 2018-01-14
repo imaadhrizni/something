@@ -97,7 +97,7 @@ session_start();
 					<input type="text" name="content"><br/>
 
 					<label id="category">Article Category:</label><br/>
-					<select name="categoryId">
+					<select name="category">
 						<?php
 
 							$sql = "SELECT * FROM category";

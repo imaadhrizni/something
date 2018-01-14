@@ -73,13 +73,14 @@ unset($_SESSION["username"]);
 						if($dbusertype == 0){
 							$normalURL = "index.php";
 							$_SESSION["username"] = $username;
-							$_SESSION["usertype"] = $dbusertype;
+							$_SESSION["usertype"] = $username;
+							echo "IMAADH".$_SESSION['username'];
 							header("Location: http://$host$uri/$normalURL");
 
 						} else{
 							$adminURL = "admin-portal.php";
 							$_SESSION["username"] = $username;
-							$_SESSION["usertype"] = $dbusertype;
+							echo "IMAADH".$_SESSION['username'];
 							header("Location: http://$host$uri/$adminURL");
 						}
 					}

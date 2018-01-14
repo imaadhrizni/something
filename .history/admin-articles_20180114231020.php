@@ -62,7 +62,7 @@ session_start();
 					$categoryId = $_POST['categoryId'];
 					$username = $_SESSION["username"];
 
-					$sql = "INSERT INTO article (article_text, article_category_id, article_user_name, article_header) VALUES ('".$content."', '".$categoryId."', '".$username."', '".$title."')";
+					$sql = "INSERT INTO article (article_text, article_category_id, article_user_name, article_header) VALUES ('".$content."', '".$category."', '".$username."', '".$title."')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "New article created successfully";

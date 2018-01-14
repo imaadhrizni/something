@@ -74,6 +74,7 @@ unset($_SESSION["username"]);
 							$normalURL = "index.php";
 							$_SESSION["username"] = $username;
 							$_SESSION["usertype"] = $dbusertype;
+							echo "IMAADH".$_SESSION['username'];
 							header("Location: http://$host$uri/$normalURL");
 
 						} else{

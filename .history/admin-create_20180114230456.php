@@ -64,7 +64,7 @@ session_start();
 				//get current username from session
 				$username = $_SESSION["username"];
 				// Select all users except current user name
-				$sqlUsers = "SELECT * FROM user WHERE NOT (username = '$username' AND user_type=1)";
+				$sqlUsers = "SELECT * FROM user WHERE NOT (username = '$username' AND usertype=1)";
 				
 				$result_users = $conn->query($sqlUsers);
 				if($result_users!=null){
