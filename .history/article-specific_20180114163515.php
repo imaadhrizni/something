@@ -1,7 +1,10 @@
 <?php
 
 include('dbconnection.php');
+
+// Start the session
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -48,53 +51,35 @@ session_start();
 				</ul>
 			</nav>
 
-			<?php
+			<article>
 
-			if(isset($_POST['save'])){
+				<?php
 
-				$username = $_POST['username'];
+				$articleid = $_GET["val"];
 
-				$password = $_POST['password'];
+				$sql_article = "SELECT * FROM article WHERE article_id=".$articleid;
+				
+				$result_article_text = $conn->query($sql_article);
 
-				$sql = "SELECT * FROM user";
+				if ($result_article_text->num_rows > 0) {
 
-				$result = $conn->query($sql);
+					while($row = $result_article_text->fetch_assoc()) {
 
-				while($row = $result->fetch_assoc()) {
+						echo '<div>';
 
-					$dbpassword = $row["password"];
+						echo $row["article_text"];
 
-					$passwordOK = password_verify($password, $dbpassword);
-
-					$dbusername = $row["username"];
-
-					$dbusertype = $row["user_type"];
-
-					$host  = $_SERVER['HTTP_HOST'];
-					$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-
-					if(($dbusername == $username) && ($passwordOK == true)){
-					
-						if($dbusertype == 0){
-							$normalURL = "index.php";
-							$_SESSION["username"] = $username;
-							echo "IMAADH".$_SESSION['username'];
-							header("Location: http://$host$uri/$normalURL");
-
-						} else{
-							$adminURL = "admin-portal.php";
-							$_SESSION["username"] = $username;
-							echo "IMAADH".$_SESSION['username'];
-							// header("Location: http://$host$uri/$adminURL");
-						}
+						echo '</div>';
 
 					}
+
 				}
-			}
 
-			?>
+				?>
 
-			<form method="post"> 
+
+				<!-- Add Comment Form -->
+				<form method="post"> 
 				<label id="username">Username:</label><br/>
 				<input type="text" name="username"><br/>
 
@@ -105,8 +90,32 @@ session_start();
 			</form>
 
 
+				<!-- Comments Section -->
+				<?php
 
-			
+				$articleid = $_GET["val"];
+
+				$sql_article = "SELECT * FROM comment WHERE article_id=".$articleid." AND comment_approve_status==1";
+
+				$result_result_comments = $conn->query($sql_article);
+
+				if ($result_comments->num_rows > 0) {
+
+					while($row = $result_comments->fetch_assoc()) {
+
+						echo '<div>';
+
+						echo $row["comment_text"] $row["comment_user_name"];
+
+						echo '</div>';
+
+					}
+
+				}
+
+				?>
+
+			</article>
 		</main>
 
 		<footer>

@@ -113,9 +113,8 @@ echo "ECHOCOHOHOOH".$_SESSION["username"];
 					if ($result_comments->num_rows > 0) {
 						while($row = $result_comments->fetch_assoc()) {
 							echo '<div>';
-							echo $row["comment_text"];
-							echo $row["comment_user_name"];
-							echo '</div>'; 
+							echo $row["comment_text"].$row["comment_user_name"];
+							echo '</div>'; 1
 						}
 					}else{
 						echo "No Comments";

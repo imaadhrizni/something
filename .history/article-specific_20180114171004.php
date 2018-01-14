@@ -107,15 +107,15 @@ echo "ECHOCOHOHOOH".$_SESSION["username"];
 
 				$articleid = $_GET["val"];
 
-				$sql_comments = "SELECT * FROM comment WHERE comment_article_id=".$articleid." AND comment_approve_status=1";
+				$sql_comments = "SELECT * FROM comment WHERE article_id=".$articleid." AND comment_approve_status=1";
+				
 				$result_comments = $conn->query($sql_comments);
 				if($result_comments!=null){
 					if ($result_comments->num_rows > 0) {
 						while($row = $result_comments->fetch_assoc()) {
 							echo '<div>';
 							echo $row["comment_text"];
-							echo $row["comment_user_name"];
-							echo '</div>'; 
+							echo '</div>';
 						}
 					}else{
 						echo "No Comments";

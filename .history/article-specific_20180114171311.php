@@ -114,7 +114,7 @@ echo "ECHOCOHOHOOH".$_SESSION["username"];
 						while($row = $result_comments->fetch_assoc()) {
 							echo '<div>';
 							echo $row["comment_text"];
-							echo $row["comment_user_name"];
+							echo $row["comment_text"];
 							echo '</div>'; 
 						}
 					}else{

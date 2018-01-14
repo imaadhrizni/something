@@ -79,7 +79,7 @@ session_start();
 							$normalURL = "index.php";
 							$_SESSION["username"] = $username;
 							echo "IMAADH".$_SESSION['username'];
-							header("Location: http://$host$uri/$normalURL");
+							// header("Location: http://$host$uri/$normalURL");
 
 						} else{
 							$adminURL = "admin-portal.php";

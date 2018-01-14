@@ -1,7 +1,8 @@
 <?php
 
 include('dbconnection.php');
-session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -74,22 +75,21 @@ session_start();
 					$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 
 					if(($dbusername == $username) && ($passwordOK == true)){
-					
+
 						if($dbusertype == 0){
 							$normalURL = "index.php";
-							$_SESSION["username"] = $username;
-							echo "IMAADH".$_SESSION['username'];
-							header("Location: http://$host$uri/$normalURL");
+							header("Location: http://$host$uri/$extra");
 
 						} else{
-							$adminURL = "admin-portal.php";
-							$_SESSION["username"] = $username;
-							echo "IMAADH".$_SESSION['username'];
-							// header("Location: http://$host$uri/$adminURL");
+							$adminURL = "http://localhost/something/admin-portal.php";
+							header('Location: '.$adminURL);
+
 						}
 
 					}
+
 				}
+
 			}
 
 			?>

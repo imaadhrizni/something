@@ -4,7 +4,7 @@ include('dbconnection.php');
 
 // Start the session
 session_start();
-echo "ECHOCOHOHOOH".$_SESSION["username"];
+
 ?>
 
 <!DOCTYPE html>
@@ -81,51 +81,42 @@ echo "ECHOCOHOHOOH".$_SESSION["username"];
 				<!-- Add Comment Form -->
 				<form method="post"> 
 					<label id="comment_text">Comment:</label><br/>
-					<input type="text" name="comment_text"><br/>
+					<input type="text" name="comment_text"><br/>2
 					<button type="submit" name="save">save</button>
 				</form>
 
 				<?php
 				if(isset($_POST['save'])){
-					$articleid = $_GET["val"];
+
 					$commentText = $_POST['comment_text'];
-					if($_SESSION["username"]!=null){
-						$username = $_SESSION["username"];
-					}
-					$sql = "INSERT INTO `comment` (`comment_text`, `comment_user_name`, `comment_article_id`) VALUES ('".$commentText."', '".$username."', '".$articleid."');";
+					$sql = "SELECT * FROM user";
+					$sql = "INSERT INTO user (username, password) VALUES ('".$username."', '".$hashed_password."')";
 
 					if ($conn->query($sql) === TRUE) {
-						echo "New comment created successfully";
+						echo "New user created successfully";
 					} else {
 						echo "Error: " . $sql . "<br>" . $conn->error;
 					}
-				}
+					}
 				?>
 
 				<!-- Comments Section -->
-				<?php
+				<!-- <?php
 
 				$articleid = $_GET["val"];
 
-				$sql_comments = "SELECT * FROM comment WHERE comment_article_id=".$articleid." AND comment_approve_status=1";
-				$result_comments = $conn->query($sql_comments);
-				if($result_comments!=null){
-					if ($result_comments->num_rows > 0) {
-						while($row = $result_comments->fetch_assoc()) {
-							echo '<div>';
-							echo $row["comment_text"];
-							echo $row["comment_user_name"];
-							echo '</div>'; 
-						}
-					}else{
-						echo "No Comments";
+				$sql_article = "SELECT * FROM comment WHERE article_id=".$articleid." AND comment_approve_status==1";
+
+				$result_result_comments = $conn->query($sql_article);
+
+				if ($result_comments->num_rows > 0) {
+					while($row = $result_comments->fetch_assoc()) {
+						echo '<div>';
+						echo $row["comment_text"].$row["comment_user_name"];
+						echo '</div>';
 					}
-				}else{
-					echo '<br>';
-					echo "No Comments";
-					echo '<br>';					
 				}
-				?>
+				?> -->
 
 			</article>
 		</main>

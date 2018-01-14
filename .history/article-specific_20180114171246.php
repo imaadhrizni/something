@@ -115,7 +115,7 @@ echo "ECHOCOHOHOOH".$_SESSION["username"];
 							echo '<div>';
 							echo $row["comment_text"];
 							echo $row["comment_user_name"];
-							echo '</div>'; 
+							echo '</div>'; 1
 						}
 					}else{
 						echo "No Comments";
