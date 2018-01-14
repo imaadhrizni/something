@@ -8,6 +8,7 @@
 			<ul>
 				<!-- Categories -->
 				<?php
+				
 				echo $_SESSION["username"];
 
 				$sql = "SELECT * FROM category";
