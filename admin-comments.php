@@ -44,20 +44,63 @@ session_start();
 		<!-- Delete the <nav> element if the sidebar is not required -->
 			<nav>
 				<ul>
-					<li><a href="#">Articles</a></li>
+					<li><a href="admin-articles.php">Articles</a></li>
 					<li><a href="#">Create Admin</a></li>
-					<li><a href="#">Comment</a></li>
-					<li><a href="#">Category</a></li>
+					<li><a href="admin-comments.php">Comment Approval</a></li>
+					<li><a href="admin-category.php">Category</a></li>
 				</ul>
 			</nav>
 
 			<article>
 
 
-				<!-- Articles -->
+				<!-- All Existing Comments pending approval -->
+				<div style="margin-top: 100px;">
+
+					<?php
+
+					$sqlComments = "SELECT * FROM comment WHERE comment_approve_status = 0";
+					
+					// $result = $conn->query($sql);
+					// while($row = $result->fetch_assoc()) {
 
 
+					$result_comments = $conn->query($sqlComments);
+					// if($result_comments!=null){
+					// 	if ($result_comments->num_rows > 0) {
+							while($row = $result_comments->fetch_assoc()) {
+								echo '<div>';
+								echo '<form method="post">';
+								echo "<li class='article-list-item'>". $row["comment_text"];
+								$commentId = $row["comment_id"];
+								echo '<input type="hidden" name="commentId" value='.$commentId.'>';
+								echo '<button type="submit" name="approve">Approve</button>';
+								echo "</li>";
+								echo '</form>';
+								echo '</div>';
+							}
+						// }else{
+						// 	echo "No Comments to approve";
+						// }
+					// }else{
+					// 	echo '<br>';
+					// 	echo "No Comments";
+					// 	echo '<br>';					
+					// }
 
+					if(isset($_POST['approve'])){
+
+						$commentId = $_POST['commentId'];
+						$sqlApprove = "UPDATE `comment` SET `comment_approve_status`=1 WHERE comment_id = ".$commentId;
+						if ($conn->query($sqlApprove) == TRUE) {
+							echo "comment approved";
+							header("Refresh:0");
+						} else {
+							echo "Error: " . $sql . "<br>" . $conn->error;
+						}
+					}
+					?>
+				</div>
 			</article>
 		</main>
 
