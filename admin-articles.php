@@ -75,6 +75,21 @@ session_start();
 
 				}
 
+
+				if(isset($_POST['delete'])){
+
+					$deleteid = $_POST['deleteid'];
+
+					$sqlDelete = "DELETE FROM article WHERE article_id = ".$deleteid;
+
+					if ($conn->query($sqlDelete) === TRUE) {
+						echo "article deleted";
+					} else {
+						echo "Error: " . $sql . "<br>" . $conn->error;
+					}
+
+				}
+
 				?>
 
 				<form method="post"> 
@@ -104,6 +119,42 @@ session_start();
 
 					<button type="submit" name="save">save</button>
 				</form>
+
+
+				<div style="margin-top: 100px;">
+
+					<?php
+
+					$sqlArticle = "SELECT * FROM article";
+					$result_article = $conn->query($sqlArticle);
+
+					while($row = $result_article->fetch_assoc()) {
+
+						echo '<div>';
+
+						echo '<form method="post">';
+
+						echo "<li class='article-list-item'>". $row["article_header"];
+
+						//echo "<a href='#' class='read-more-button'>Read More</a>";
+
+						$deleteid = $row["article_id"];
+
+						echo '<input type="hidden" name="deleteid" value='.$deleteid.'>';
+
+						echo '<button type="submit" name="delete">Delete</button>';
+
+						echo "</li>";
+
+						echo '</form>';
+
+						echo '</div>';
+
+					}
+
+					?>
+					
+				</div>
 
 
 
