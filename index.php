@@ -9,6 +9,23 @@ include('dbconnection.php');
 <head>
 	<link rel="stylesheet" href="styles.css"/>
 	<title>Northampton News - Home</title>
+
+	<style type="text/css">
+	.read-more-button{
+
+		float: right;
+		text-decoration: none;
+
+	}
+
+	.article-list-item{
+
+		background: #fff;
+		padding: 10px;
+		list-style: none;
+
+	}
+</style>
 </head>
 <body>
 	<header>
@@ -30,7 +47,7 @@ include('dbconnection.php');
 					$result = $conn->query($sql);
 
 					if ($result->num_rows > 0) {
-						
+
 						while($row = $result->fetch_assoc()) {
 
 							echo "<li><a href='#'>". $row["category_name"]. "</a></li>";
@@ -64,7 +81,8 @@ include('dbconnection.php');
 			</nav>
 
 			<article>
-				<h2>A Page Heading</h2>
+
+				<!-- <h2>A Page Heading</h2>
 				<p>Text goes in paragraphs</p>
 
 				<ul>
@@ -82,7 +100,35 @@ include('dbconnection.php');
 					<label>Textarea</label> <textarea></textarea>
 
 					<input type="submit" name="submit" value="Submit" />
-				</form>
+				</form> -->
+
+				<?php
+
+				$sql_article = "SELECT * FROM article";
+				$result_article = $conn->query($sql_article);
+
+				if ($result_article->num_rows > 0) {
+
+					while($row = $result_article->fetch_assoc()) {
+
+						echo '<div>';
+
+						echo "<li class='article-list-item'>". $row["article_header"];
+
+						echo "<a href='#' class='read-more-button'>Read More</a>";
+
+						echo "</li>";
+
+						echo '</div>';
+
+					}
+
+				}
+
+				?>
+
+
+
 			</article>
 		</main>
 
